@@ -25,7 +25,7 @@ jobs:
         with:
           projectPath: ./
           unityVersion: 2019.2.11f1
-          targetPlatform: Android
+          targetPlatform: StandaloneWindows64
 
       - name: Deploy 
         uses: actions/upload-artifact@v1
