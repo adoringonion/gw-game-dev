@@ -27,7 +27,7 @@ jobs:
         uses: webbertakken/unity-builder@v0.11
         with:
           projectPath: ./
-          unityVersion: 2019.3.12f1
+          unityVersion: 2019.3.11f1-android
           targetPlatform: Android
 
       - name: Deploy 
