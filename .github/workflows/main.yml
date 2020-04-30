@@ -23,19 +23,11 @@ jobs:
       - name: Activate Unity
         uses: webbertakken/unity-activate@v1.2
         
-      - name: free disk space
-        run: |
-          sudo swapoff -a
-          sudo rm -f /swapfile
-          sudo apt clean
-          docker rmi $(docker image ls -aq)
-          df -h
-        
       - name: Build for Android
         uses: webbertakken/unity-builder@v0.11
         with:
           projectPath: ./
-          unityVersion: 2018.4.14f1
+          unityVersion: 2019.3.12f1
           targetPlatform: Android
 
       - name: Deploy 
