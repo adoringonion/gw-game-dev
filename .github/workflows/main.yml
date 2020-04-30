@@ -1,4 +1,4 @@
-name: Activate and Build
+name: Build
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
         uses: webbertakken/unity-builder@v0.11
         with:
           projectPath: ./
-          unityVersion: 2019.3.11f1
+          unityVersion: 2019.2.11f1
           targetPlatform: Android
 
       - name: Deploy 
