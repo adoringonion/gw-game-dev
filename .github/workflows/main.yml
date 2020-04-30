@@ -20,9 +20,6 @@ jobs:
         with:
           lfs: true
 
-      - name: Activate Unity
-        uses: webbertakken/unity-activate@v1.2
-        
       - name: Build for Android
         uses: webbertakken/unity-builder@v0.11
         with:
