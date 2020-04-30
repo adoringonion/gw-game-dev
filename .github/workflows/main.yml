@@ -1,20 +1,26 @@
-name: Activate Unity
+name: Activate and Build
 
 on:
   push:
     branches:
-    - master
+      - master
+  pull_request:
+    branches:
+      - master
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
-  requestActivation:
-    name: Request activation ✔
+  BuildAndDeploy:
+    name: Build and Deploy ✔
     runs-on: ubuntu-latest
     steps:
       - name: Activate Unity
         uses: webbertakken/unity-activate@v1.2
-
+        
+      - name: Docker Image Prune
+        run: docker image prune --force
+        
       - name: Build for Android
         uses: webbertakken/unity-builder@v0.11
         with:
