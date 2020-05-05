@@ -7,14 +7,14 @@ namespace CameraSystem
     /// <summary>
     /// カメラを取得するためのプロバイダ.
     /// </summary>
-    public class CameraProvider : SingletonMonoBehaviour<CameraProvider>
+    public class CameraRigProvider : SingletonMonoBehaviour<CameraRigProvider>
     {
 
         public enum DeviceId
         {
             OculusQuest,
         }
-
+        
         [Header("今はとりあえずここに列挙してる")] 
         [SerializeField] DeviceId device;
 
@@ -27,10 +27,10 @@ namespace CameraSystem
         protected override void Awake()
         {
             base.Awake();
-
-            SceneManager.sceneUnloaded += CameraProvider.SceneUnLoadedListener;
-            SceneManager.activeSceneChanged += CameraProvider.ActiveSceneChangedListener;
-            SceneManager.sceneLoaded += CameraProvider.SceneLoadedListener;
+            DontDestroyOnLoad(this);
+            SceneManager.sceneUnloaded += CameraRigProvider.SceneUnLoadedListener;
+            SceneManager.activeSceneChanged += CameraRigProvider.ActiveSceneChangedListener;
+            SceneManager.sceneLoaded += CameraRigProvider.SceneLoadedListener;
         }
         
         
@@ -69,7 +69,7 @@ namespace CameraSystem
 
             if (cameraRigObj != null)
             {
-                CameraProvider.RemoveCloneString(cameraRigObj);
+                CameraRigProvider.RemoveCloneString(cameraRigObj);
                 Instance.rig = cameraRigObj.GetComponent<ICameraRig>();
             }
         }
