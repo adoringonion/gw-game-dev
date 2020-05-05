@@ -12,6 +12,7 @@ namespace CameraSystem
 
         public enum DeviceId
         {
+            Editor,
             OculusQuest,
         }
         
@@ -19,6 +20,7 @@ namespace CameraSystem
         [SerializeField] DeviceId device;
 
         [SerializeField] GameObject oculusQuestCameraRig;
+        [SerializeField] GameObject editorCameraRig;
         [Header("-----------------------------")]        
         
         ICameraRig rig;
@@ -28,6 +30,10 @@ namespace CameraSystem
         {
             base.Awake();
             DontDestroyOnLoad(this);
+
+#if UNITY_EDITOR
+            device = DeviceId.Editor;
+#endif
             SceneManager.sceneUnloaded += CameraRigProvider.SceneUnLoadedListener;
             SceneManager.activeSceneChanged += CameraRigProvider.ActiveSceneChangedListener;
             SceneManager.sceneLoaded += CameraRigProvider.SceneLoadedListener;
@@ -62,6 +68,10 @@ namespace CameraSystem
             GameObject cameraRigObj = null;
             switch (Instance.device)
             {
+                case DeviceId.Editor:
+                    cameraRigObj = Instantiate(Instance.editorCameraRig);
+                    break;
+                
                 case DeviceId.OculusQuest:
                     cameraRigObj = Instantiate(Instance.oculusQuestCameraRig);
                     break;
