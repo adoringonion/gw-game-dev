@@ -7,17 +7,21 @@ namespace AppFw.Core
     /// <summary>
     /// マネージャを融通するクラス.
     /// </summary>
-    public class ManagerProvider : SingletonMonoBehaviour<ManagerProvider>
+    public class ManagerProvider
     {
 
+        static ManagerProvider instance;
+        static ManagerProvider Instance => instance ?? (instance = new ManagerProvider());
 
-        Dictionary<string, RuntimeManagerBase> managerDic = new Dictionary<string, RuntimeManagerBase>();
+        readonly Dictionary<string, RuntimeManagerBase> managerDic = new Dictionary<string, RuntimeManagerBase>();
 
 
-        protected override void Awake()
+        /// <summary>
+        /// 初期化.
+        /// Unityと連携するイベント系とかをここで登録する.
+        /// </summary>
+        public static void Init()
         {
-            base.Awake();
-            DontDestroyOnLoad(this);
             SceneManager.activeSceneChanged += ActiveSceneChangeListener;
             SceneManager.sceneUnloaded += SceneUnLoadedListener;
         }

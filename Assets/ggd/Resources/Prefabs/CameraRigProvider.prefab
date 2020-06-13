@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7718c8671f256ab46a7d01e679a6f787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  device: 1
+  device: 0
   oculusQuestCameraRig: {fileID: 7257098930546962492, guid: cdde61e75c36e0e49800402e9b234d9f,
     type: 3}
   editorCameraRig: {fileID: 7009939311636634147, guid: 8b69cb6ce23f5494db0f7e2d1f11ffa7,

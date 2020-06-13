@@ -11,7 +11,7 @@ namespace AppFw.Core
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void InitializeApp()
         {
-            CreateGameObject("Prefabs/ManagerProvider");
+            ManagerProvider.Init();
             CreateGameObject("Prefabs/CameraRigProvider");
         }
 
