@@ -11,9 +11,29 @@ namespace AppFw.Core
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void InitializeApp()
         {
-            // ここでGameMangerを生成する.
-            var go = GameObject.Instantiate(Resources.Load("Prefabs/ManagerProvider")) as GameObject;
-            go.name = go.name.Replace("(Clone)", "");
+            ManagerProvider.Init();
+            CreateGameObject("Prefabs/CameraRigProvider");
         }
+
+
+        /// <summary>
+        /// GameObjectの生成.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="isRemoveCloneString"></param>
+        static void CreateGameObject(
+            string path,
+            bool isRemoveCloneString = true)
+        {
+            var go = GameObject.Instantiate(Resources.Load(path)) as GameObject;
+            if (isRemoveCloneString)
+            {
+                go.name = go.name.Replace("(Clone)", "");
+            } 
+        }
+        
+        
+        
     }
 }
+
